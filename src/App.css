@@ -5,38 +5,58 @@
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
 
   width: 100vw;
   height: 100svh;
 }
 
-.container {
-  display: flex;
-  text-align: center;
-}
-
 /* component transition */
 
-.title {
+.welcomeTitles {
+  font-size: 4rem;
+  font-family: "Ubuntu";
+}
+
+.titleTwo {
+  color: darkcyan;
+}
+
+.titleOne,
+.titleTwo {
   display: flex;
   flex-direction: column;
   text-align: center;
-  font-size: 3.5rem;
 }
 
 .petOwnersNotebook {
-  color: darkcyan;
+  color: rgb(36, 173, 173);
+}
+
+.startBtn {
+  font-size: 1.5rem;
+  padding: 0.5rem 0.8rem;
+  border: 3px double rgba(179, 179, 179, 0.8);
+  border-radius: 10px;
+  box-shadow: 0.5px 0.5px 10px rgba(2, 131, 103, 0.8);
+  color: rgb(174, 209, 209);
 }
 
 /* transition */
 
-.word {
+.titleOne,
+.titleTwo,
+.startBtn {
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
 }
 
-.word.show {
+.titleOne.show,
+.titleTwo.show,
+.startBtn {
   opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
 }
