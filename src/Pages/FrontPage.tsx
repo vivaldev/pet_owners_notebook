@@ -4,9 +4,9 @@ import "../styles/frontpage.css";
 import { useState, useEffect } from "react";
 
 const FrontPage = () => {
-  const [input, setInput] = useState("");
-  const [pets, setPets] = useState([]);
-  const [scene, setScene] = useState(1);
+  const [input, setInput] = useState<string>("");
+  const [pets, setPets] = useState<string[]>([]);
+  const [scene, setScene] = useState<number>(1);
 
   useEffect(() => {
     const storedPets = localStorage.getItem("pets");
@@ -19,15 +19,15 @@ const FrontPage = () => {
     localStorage.setItem("pets", JSON.stringify(pets));
   }, [pets]);
 
-  function getInput(event) {
+  function getInput(event: React.ChangeEvent<HTMLInputElement>): void {
     setInput(event.target.value);
   }
 
-  function addNewPet(e) {
+  function addNewPet(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    setPets([...pets, input]);
+    setPets((prevPets: string[]) => [...prevPets, input]);
     setInput("");
-    setScene((prevValue) => prevValue + 1);
+    setScene((prevValue: number) => prevValue + 1);
   }
 
   return (
@@ -50,7 +50,7 @@ const FrontPage = () => {
         </form>
       )}
 
-      {scene === 2 && <p>Scene 2</p>}
+      {scene === 2 && <p>What kind of animal {pets[0]} is?</p>}
     </div>
   );
 };
