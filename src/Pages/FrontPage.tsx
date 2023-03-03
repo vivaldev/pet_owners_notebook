@@ -8,6 +8,10 @@ const FrontPage = () => {
   const [pets, setPets] = useState<string[]>([]);
   const [scene, setScene] = useState<number>(1);
 
+  const [questions, setQuestions] = useState<
+    { question: string; answer: string }[]
+  >([]);
+
   useEffect(() => {
     const storedPets = localStorage.getItem("pets");
     if (storedPets) {
@@ -23,9 +27,17 @@ const FrontPage = () => {
     setInput(event.target.value);
   }
 
+  const newQustions = [];
+
   function addNewPet(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
+
     setPets((prevPets: string[]) => [...prevPets, input]);
+    setQuestions((prevQuestions: { question: string; answer: string }[]) => [
+      ...prevQuestions,
+      { question: `What animal ${input} is?`, answer: "" },
+    ]);
+
     setInput("");
     setScene((prevValue: number) => prevValue + 1);
   }
@@ -50,7 +62,13 @@ const FrontPage = () => {
         </form>
       )}
 
-      {scene === 2 && <p>What kind of animal {pets[0]} is?</p>}
+      {scene === 2 && (
+        <div className="quiz">
+          <div className="firstQuestion">
+            <h3>What animal {pets[0]} is?</h3>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
