@@ -4,8 +4,36 @@
   align-items: center;
 }
 
+.inputForm {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid white; */
+  width: 25%;
+  justify-content: space-around;
+}
+
 .frontpageTitle {
   font-family: "ubuntu";
-  font-size: 3.5rem;
+  font-size: 3.7rem;
   color: darkcyan;
+}
+
+.petInput {
+  font-size: 1.4rem;
+  border-radius: 0.9rem;
+  padding: 0.55rem;
+  border: 0.1rem solid rgba(104, 117, 114, 0.5);
+  background-color: rgb(40, 54, 56);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.petButton {
+  margin-left: 1.1rem;
+  font-size: 1.1rem;
+  font-family: "Courier New", Courier, monospace;
+  padding: 0.5rem 0.6rem;
+  background-color: rgb(30, 53, 53);
+  color: rgb(37, 143, 108);
+  border: 1px solid rgb(5, 90, 83);
+  border-radius: 3px;
 }
