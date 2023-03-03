@@ -43,6 +43,11 @@
   color: rgb(174, 209, 209);
 }
 
+.startBtn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 /* transition */
 
 .titleOne,
