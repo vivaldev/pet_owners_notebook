@@ -1,0 +1,50 @@
+.catForm {
+  display: flex;
+  flex-direction: column;
+  min-width: 40vw;
+
+  border: 4px double rgb(158, 151, 151);
+  padding: 2em;
+  background-color: rgb(49, 48, 48);
+  margin-top: 1rem;
+  border-radius: 3px;
+}
+
+.petCardEmphasis {
+  font-family: "Ubuntu";
+  font-size: 1.7rem;
+  color: darkcyan;
+}
+
+.form-group {
+  margin: 0.5remrem;
+}
+
+h3 {
+  margin: 0;
+}
+
+label {
+  margin-bottom: 0.4rem;
+  font-size: 1.3rem;
+  display: flex;
+  cursor: pointer;
+}
+
+input {
+  margin: 0.4rem;
+  cursor: pointer;
+}
+
+button {
+  height: 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  margin-top: 1.3rem;
+}
+
+button:hover,
+button:active {
+  cursor: pointer;
+}

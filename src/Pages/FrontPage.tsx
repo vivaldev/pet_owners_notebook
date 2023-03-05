@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 import "../styles/frontpage.css";
 import { useState, useEffect } from "react";
 
@@ -7,6 +8,7 @@ const FrontPage = () => {
   const [input, setInput] = useState<string>("");
   const [pets, setPets] = useState<string[]>([]);
   const [scene, setScene] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false); // new state for loading indicator
 
   const [questions, setQuestions] = useState<
     { question: string; answer: string }[]
@@ -32,19 +34,24 @@ const FrontPage = () => {
   function addNewPet(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
-    setPets((prevPets: string[]) => [...prevPets, input]);
-    setQuestions((prevQuestions: { question: string; answer: string }[]) => [
-      ...prevQuestions,
-      { question: `What animal ${input} is?`, answer: "" },
-    ]);
+    setIsLoading(true); // show loading indicator
+    setTimeout(() => {
+      // simulate API call with setTimeout
+      setPets((prevPets: string[]) => [...prevPets, input]);
+      setQuestions((prevQuestions: { question: string; answer: string }[]) => [
+        ...prevQuestions,
+        { question: `What animal ${input} is?`, answer: "" },
+      ]);
 
-    setInput("");
-    setScene((prevValue: number) => prevValue + 1);
+      setInput("");
+      setScene((prevValue: number) => prevValue + 1);
+      setIsLoading(false); // hide loading indicator
+    }, 1000); // wait for 1 second before updating state
   }
 
   return (
     <div className="frontpage">
-      <h1 className="frontpageTitle">Pet Owner's Notebook</h1>
+      <Header />
 
       {/* SCENES */}
       {scene === 1 && (
@@ -59,13 +66,36 @@ const FrontPage = () => {
           <button type="submit" className="petButton">
             New pet
           </button>
+          {isLoading && <p>Loading...</p>} {/* show loading indicator */}
         </form>
       )}
 
       {scene === 2 && (
         <div className="quiz">
           <div className="firstQuestion">
-            <h3>What animal {pets[0]} is?</h3>
+            <h3 className="question">
+              What animal <span className="petName">{pets[0]}</span> is?
+            </h3>
+            <div className="options">
+              <Link className="optionBtn" to="/cat">
+                Cat
+              </Link>
+              <Link className="optionBtn" to="/dog">
+                Dog
+              </Link>
+              <Link className="optionBtn" to="/horse">
+                Horse
+              </Link>
+              <Link className="optionBtn" to="/sheep">
+                Sheep
+              </Link>
+              <Link className="optionBtn" to="/chicken">
+                Chicken
+              </Link>
+              <Link className="optionBtn" to="/rabbit">
+                Rabbit
+              </Link>
+            </div>
           </div>
         </div>
       )}

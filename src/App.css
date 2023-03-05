@@ -12,6 +12,14 @@
   height: 100svh;
 }
 
+.container {
+  width: 100vw;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* component transition */
 
 .welcomeTitles {
