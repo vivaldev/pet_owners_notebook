@@ -4,9 +4,13 @@ import "../styles/frontpage.css";
 import { useState, useEffect } from "react";
 
 const FrontPage = () => {
-  const [input, setInput] = useState("");
-  const [pets, setPets] = useState([]);
-  const [scene, setScene] = useState(1);
+  const [input, setInput] = useState<string>("");
+  const [pets, setPets] = useState<string[]>([]);
+  const [scene, setScene] = useState<number>(1);
+
+  const [questions, setQuestions] = useState<
+    { question: string; answer: string }[]
+  >([]);
 
   useEffect(() => {
     const storedPets = localStorage.getItem("pets");
@@ -19,15 +23,23 @@ const FrontPage = () => {
     localStorage.setItem("pets", JSON.stringify(pets));
   }, [pets]);
 
-  function getInput(event) {
+  function getInput(event: React.ChangeEvent<HTMLInputElement>): void {
     setInput(event.target.value);
   }
 
-  function addNewPet(e) {
+  const newQustions = [];
+
+  function addNewPet(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    setPets([...pets, input]);
+
+    setPets((prevPets: string[]) => [...prevPets, input]);
+    setQuestions((prevQuestions: { question: string; answer: string }[]) => [
+      ...prevQuestions,
+      { question: `What animal ${input} is?`, answer: "" },
+    ]);
+
     setInput("");
-    setScene((prevValue) => prevValue + 1);
+    setScene((prevValue: number) => prevValue + 1);
   }
 
   return (
@@ -50,7 +62,13 @@ const FrontPage = () => {
         </form>
       )}
 
-      {scene === 2 && <p>Scene 2</p>}
+      {scene === 2 && (
+        <div className="quiz">
+          <div className="firstQuestion">
+            <h3>What animal {pets[0]} is?</h3>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
